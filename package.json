@@ -1,0 +1,31 @@
+{
+  "name": "fsworkshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tap test/**/*.test.js",
+    "start": "fastify start -l info app.js",
+    "dev": "fastify start -l info -P app.js"
+  },
+  "keywords": [],
+  "author": "Tomas Della Vedova",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^2.4.1",
+    "fastify-autoload": "^0.8.0",
+    "fastify-basic-auth": "^0.4.0",
+    "fastify-cli": "^1.0.0",
+    "fastify-elasticsearch": "^1.0.0",
+    "fastify-plugin": "^1.6.0",
+    "hyperid": "^2.0.2",
+    "make-promises-safe": "^5.0.0"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1",
+    "tap": "^14.2.2"
+  }
+}
