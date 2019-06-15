@@ -1,13 +1,10 @@
 'use strict'
 
 async function getService (fastify, opts) {
-  fastify.setErrorHandler((error, req, reply) => {
-    console.log(error)
-    reply.send(error)
-  })
   fastify.route({
     method: 'GET',
     path: '/post/:id',
+    onRequest: fastify.basicAuth,
     handler: onGetPost,
     schema: {
       response: {

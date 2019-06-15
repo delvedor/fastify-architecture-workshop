@@ -3,11 +3,12 @@
 const Hyperid = require('hyperid')
 
 async function postService (fastify, opts) {
-  const hyperid = Hyperid()
+  const hyperid = Hyperid({ urlSafe: true })
 
   fastify.route({
     method: 'POST',
     path: '/post',
+    onRequest: fastify.basicAuth,
     handler: onPost,
     schema: {
       body: {
@@ -39,15 +40,13 @@ async function postService (fastify, opts) {
     const { text } = req.body
     const time = new Date().toISOString()
 
-    const topics = text
-      .split(' ')
-      .filter(w => w.starsWith('#'))
-      .map(w => w.slice(1).replace(/[.,\s]/g, ''))
+    const topics = await loadTopics(text)
 
-    const id = hyperid({ urlSafe: true })
+    const id = hyperid()
 
     await this.elastic.index({
       index: 'tweets',
+      refresh: 'wait_for',
       id,
       body: {
         id,
@@ -58,8 +57,18 @@ async function postService (fastify, opts) {
       }
     })
 
+    reply.code(201)
     return { id, time }
   }
+}
+
+// Function that can potentially put
+// under heavy load our process
+async function loadTopics (text) {
+  return text
+    .split(' ')
+    .filter(w => w.startsWith('#'))
+    .map(w => w.slice(1).replace(/[.,\s]/g, ''))
 }
 
 module.exports = postService
