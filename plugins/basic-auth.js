@@ -33,11 +33,11 @@ async function basicAuthPlugin (fastify, opts) {
     req.user.name = username
 
     if (username === 'arya') {
-      req.user.topics = ['sword', 'speed', 'today']
+      req.user.topics = ['sword', 'death', 'weapon']
     }
 
     if (username === 'jon') {
-      req.user.topics = ['sword', 'honor', 'know']
+      req.user.topics = ['sword', 'night', 'know']
     }
   }
 }

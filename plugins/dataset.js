@@ -30,9 +30,10 @@ async function datasetPlugin (fastify, opts) {
   const now = Date.now()
 
   const dataset = getDataset()
-    .map(doc => {
+    .map((doc, index) => {
       doc.id = hyperid()
-      doc.time = new Date(now - (getRandomInt(1, 500) * 1000 * 1000)).toISOString()
+      // 10 mins * index
+      doc.time = new Date(now - index * 1000 * 60 * 10).toISOString()
       doc.topics = doc.text
         .split(' ')
         .filter(w => w.startsWith('#'))
@@ -62,8 +63,8 @@ function getDataset () {
     { text: 'What good is this, I ask you? He who hurries through life hurries to his #grave.', user: 'Davos' },
     { text: 'Old #stories are like old #friends, she used to say. You have to visit them from time to time.', user: 'Bran' },
     { text: 'The greatest fools are ofttimes more #clever than the men who laugh at them', user: 'Tyrion' },
-    { text: 'Everyone wants something, Alayne. And when you know what a man wants you know who he is, and how to move him.', user: 'Sansa' },
-    { text: 'Always keep your foes confused. If they are never certain who you are or what you want, they cannot know what you are like to do next. Sometimes the best way to baffle them is to make moves that have no purpose, or even seem to work against you.', user: 'Sansa' },
+    { text: 'Everyone wants something, Alayne. And when you #know what a man wants you know who he is, and how to move him.', user: 'Sansa' },
+    { text: 'Always keep your foes confused. If they are never certain who you are or what you want, they cannot #know what you are like to do next. Sometimes the best way to baffle them is to make moves that have no purpose, or even seem to work against you.', user: 'Sansa' },
     { text: 'One #voice may speak you false, but in many there is always truth to be found.', user: 'Daenerys' },
     { text: '#History is a wheel, for the nature of man is fundamentally unchanging.', user: 'Rodrik' },
     { text: '#Knowledge is a #weapon, Jon. Arm yourself well before you ride forth to #battle.', user: 'Samwell' },
@@ -71,18 +72,17 @@ function getDataset () {
     { text: 'In the game of #thrones, even the humblest pieces can have wills of their own. Sometimes they refuse to make the moves you’ve planned for them. Mark that well, Alayne. It’s a lesson that Cersei Lannister still has yet to learn.', user: 'Alayne' },
     { text: 'Every man should lose a #battle in his youth, so he does not lose a #war when he is old.', user: 'Victarion' },
     { text: 'The fisherman drowned, but his daughter got Stark to the Sisters before the boat went down. They say he left her with a bag of silver and a bastard in her belly. Jon Snow, she named him, after Arryn.', user: 'Davos' },
-    { text: 'Men live their lives trapped in an eternal present, between the mists of memory and the sea of shadow that is all we know of the days to come.', user: 'Bran' },
+    { text: 'Men live their lives trapped in an eternal present, between the mists of memory and the sea of shadow that is all we #know of the days to come.', user: 'Bran' },
     { text: 'When I was twelve, I milked my eel into a pot of turtle stew. I flogged the one-eyed snake, I skinned my sausage, I made the bald man cry, into the turtle stew! Which I do believe my sister ate, at least I hope she did.', user: 'Tyrion' },
     { text: "There's no cure for being a #cunt.", user: 'Bronn' },
     { text: 'The man is as useless as nipples on a breastplate.', user: 'Cersei' },
     { text: 'Born amidst salt and smoke... is he a ham?', user: 'Renly' },
     { text: 'The whores are walking bowlegged.', user: 'Littlefinger' },
-    { text: 'Do you lie awake at #night fearing my gash?', user: 'Varys' },
     { text: 'Grand Maester Pycelle made that same joke. You must be proud to be as funny as a man whose balls brush his knees.', user: 'Tyrion' },
     { text: 'What happens when the non-existent bumps against the decrepit?', user: 'Olenna' },
     { text: 'A #sword swallower, through and through.', user: 'Olenna Tyrell' },
     { text: "It's a shame the #throne isn't made out of cocks, they'd have never got him off it.", user: 'Jaime' },
-    { text: "You love your #children. It's your one redeeming quality - that, and your cheekbones.", user: 'Tyrion' },
+    { text: "You #love your #children. It's your one redeeming quality - that, and your cheekbones.", user: 'Tyrion' },
     { text: "I understand that if anymore words come pouring out your #cunt mouth, I'm going to have to eat every fucking chicken in this room.", user: 'Hound' },
     { text: 'Yes, all Lannisters are lions. And when a Tyrell farts, it smells like a rose. But how kind is he? How clever? Has he a good heart, a gentle hand?', user: 'Olenna' },
     { text: "It's not easy being #drunk all the time. If it were easy, everyone would do it.", user: 'Tyrion' },
@@ -101,7 +101,7 @@ function getDataset () {
     { text: 'What do we say to the #God of #death?', user: 'Syrio' },
     { text: 'I\'ve seen wet shits I like better than Walder Frey.', user: 'Blackfish' },
     { text: '#Winter is coming', user: 'Ned' },
-    { text: 'That\'s what I do: I #drink and I know things.', user: 'Tyrion' },
+    { text: 'That\'s what I do: I #drink and I #know things.', user: 'Tyrion' },
     { text: 'I am the dragon\'s daughter, and I swear to you that those who would harm you will die screaming.', user: 'Daenerys' },
     { text: 'A lion does not concern himself with the opinion of sheep.', user: 'Tywin' },
     { text: '#Chaos isn\'t a pit. Chaos is a ladder.', user: 'Littlefinger' },
@@ -118,12 +118,9 @@ function getDataset () {
     { text: 'If I fall, don\'t bring me back.', user: 'Jon' },
     { text: 'The big fish eat the little fish and I keep on paddling.', user: 'Varys' },
     { text: 'Lannister, Targaryen, Baratheon, Stark, Tyrell... they\'re all just spokes on a #wheel. This one\'s on top, then that one\'s on top, and on and on it spins, crushing those on the ground.', user: 'Daenerys' },
-    { text: 'Hold the #door!', user: 'Hodor' }
+    { text: 'Hold the #door!', user: 'Hodor' },
+    { text: 'Do you lie awake at #night fearing my gash?', user: 'Varys' }
   ]
-}
-
-function getRandomInt (min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 function flat (arr) {
@@ -139,4 +136,6 @@ function flat (arr) {
   return flatten
 }
 
-module.exports = fp(datasetPlugin)
+module.exports = fp(datasetPlugin, {
+  dependencies: ['fastify-elasticsearch']
+})
