@@ -1,14 +1,25 @@
 'use strict'
 
-require('make-promises-safe')
-
 const path = require('path')
 const AutoLoad = require('fastify-autoload')
+const envSchema = require('env-schema')
+
+const schema = {
+  type: 'object',
+  properties: {
+    ELASTICSEARCH: {
+      type: 'string',
+      default: 'http://localhost:9200'
+    }
+  }
+}
+
+const config = envSchema({ schema })
 
 module.exports = async function (fastify, opts) {
   fastify.register(
     require('fastify-elasticsearch'),
-    { node: 'http://localhost:9200' }
+    { node: config.ELASTICSEARCH }
   )
   // This loads all plugins defined in plugins
   // those should be support plugins that are reused
