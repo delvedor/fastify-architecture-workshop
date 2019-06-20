@@ -1,5 +1,7 @@
 'use strict'
 
+const S = require('fluent-schema')
+
 async function timelineService (fastify, opts) {
   fastify.route({
     method: 'GET',
@@ -7,40 +9,26 @@ async function timelineService (fastify, opts) {
     onRequest: fastify.basicAuth,
     handler: onGetTimeline,
     schema: {
-      querystring: {
-        type: 'object',
-        additionalProperties: false,
-        properties: {
-          // https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html
-          from: {
-            type: 'integer',
-            minimum: 0,
-            maximum: 10000
-          }
-        }
-      },
+      // https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html
+      querystring: S.object()
+        .prop('from', S.integer().minimum(0).maximum(10000))
+        .additionalProperties(false)
+        .valueOf(),
       response: {
-        200: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              id: { type: 'string' },
-              text: { type: 'string' },
-              time: { type: 'string' },
-              user: { type: 'string' },
-              topics: {
-                type: 'array',
-                items: { type: 'string' }
-              }
-            }
-          }
-        }
+        200: S.array()
+          .items(S.object()
+            .prop('id', S.string())
+            .prop('text', S.string())
+            .prop('time', S.string())
+            .prop('user', S.string())
+            .prop('topics', S.array().items(S.string()))
+          ).valueOf()
       }
     }
   })
 
   async function onGetTimeline (req, reply) {
+    // TODO: add this query in dataset.js
     const filterTopics = req.user.topics.map(t => {
       return {
         filter: {

@@ -1,5 +1,7 @@
 'use strict'
 
+const S = require('fluent-schema')
+
 async function getService (fastify, opts) {
   fastify.route({
     method: 'GET',
@@ -8,19 +10,13 @@ async function getService (fastify, opts) {
     handler: onGetPost,
     schema: {
       response: {
-        200: {
-          type: 'object',
-          properties: {
-            id: { type: 'string' },
-            text: { type: 'string' },
-            time: { type: 'string' },
-            user: { type: 'string' },
-            topics: {
-              type: 'array',
-              items: { type: 'string' }
-            }
-          }
-        }
+        200: S.object()
+          .prop('id', S.string())
+          .prop('text', S.string())
+          .prop('time', S.string())
+          .prop('user', S.string())
+          .prop('topics', S.array().items(S.string()))
+          .valueOf()
       }
     }
   })

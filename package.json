@@ -21,6 +21,7 @@
     "fastify-cli": "^1.0.0",
     "fastify-elasticsearch": "^1.0.0",
     "fastify-plugin": "^1.6.0",
+    "fluent-schema": "^0.7.2",
     "hyperid": "^2.0.2",
     "make-promises-safe": "^5.0.0"
   },

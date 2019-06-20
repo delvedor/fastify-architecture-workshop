@@ -1,5 +1,6 @@
 'use strict'
 
+const S = require('fluent-schema')
 const Hyperid = require('hyperid')
 
 async function postService (fastify, opts) {
@@ -11,26 +12,17 @@ async function postService (fastify, opts) {
     onRequest: fastify.basicAuth,
     handler: onPost,
     schema: {
-      body: {
-        type: 'object',
-        additionalProperties: false,
-        required: ['text'],
-        properties: {
-          text: {
-            type: 'string',
-            minLength: 1,
-            maxLength: 280
-          }
-        }
-      },
+      body: S.object()
+        .prop('text', S.string()
+          .minLength(1)
+          .maxLength(280)
+          .required()
+        ).valueOf(),
       response: {
-        200: {
-          type: 'object',
-          properties: {
-            id: { type: 'string' },
-            time: { type: 'string' }
-          }
-        }
+        200: S.object()
+          .prop('id', S.string())
+          .prop('time', S.string())
+          .valueOf()
       }
     }
   })
