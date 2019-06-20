@@ -16,10 +16,7 @@ const users = {
 async function basicAuthPlugin (fastify, opts) {
   fastify.register(basicAuth, { validate })
 
-  fastify.decorateRequest('user', {
-    name: '',
-    topics: []
-  })
+  fastify.decorateRequest('user', null)
 
   // The headers parsing is handled by the basicAuth plugin
   // we only need to validate the username and password.
@@ -30,14 +27,11 @@ async function basicAuthPlugin (fastify, opts) {
       return new Error('Invalid username or password')
     }
 
-    req.user.name = username
-
-    if (username === 'arya') {
-      req.user.topics = ['sword', 'death', 'weapon']
-    }
-
-    if (username === 'jon') {
-      req.user.topics = ['sword', 'night', 'know']
+    req.user = {
+      name: username,
+      topics: username === 'arya'
+        ? ['sword', 'death', 'weapon']
+        : ['sword', 'night', 'know']
     }
   }
 }
