@@ -15,6 +15,7 @@
   "author": "Tomas Della Vedova",
   "license": "ISC",
   "dependencies": {
+    "@delvedor/fastify-workshop-dataset": "^1.0.0",
     "env-schema": "^0.1.0",
     "fastify": "^2.5.0",
     "fastify-autoload": "^0.8.0",

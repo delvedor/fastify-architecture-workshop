@@ -21,6 +21,10 @@ module.exports = async function (fastify, opts) {
     require('fastify-elasticsearch'),
     { node: config.ELASTICSEARCH }
   )
+  // Creates the 'tweets' index and adds some initial data.
+  // It also exposes the generateTimelineQuery function.
+  fastify.register(require('@delvedor/fastify-workshop-dataset'))
+
   // This loads all plugins defined in plugins
   // those should be support plugins that are reused
   // through your application

@@ -28,42 +28,7 @@ async function timelineService (fastify, opts) {
   })
 
   async function onGetTimeline (req, reply) {
-    // TODO: add this query in dataset.js
-    const filterTopics = req.user.topics.map(t => {
-      return {
-        filter: {
-          term: { topics: t }
-        },
-        weight: 5
-      }
-    })
-
-    const query = {
-      query: {
-        function_score: {
-          query: {
-            match_all: {}
-          },
-          functions: [
-            {
-              gauss: {
-                time: {
-                  origin: 'now',
-                  scale: '4h',
-                  offset: '2h',
-                  decay: 0.5
-                }
-              }
-            },
-            ...filterTopics
-          ],
-          boost_mode: 'multiply'
-        }
-      },
-      size: 10,
-      from: req.query.from || 0
-    }
-
+    const query = this.generateTimelineQuery(req.user.topics, req.query.from)
     const { body, statusCode } = await this.elastic.search({
       index: 'tweets',
       body: query
