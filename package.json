@@ -17,18 +17,18 @@
   "dependencies": {
     "@delvedor/fastify-workshop-dataset": "^1.0.0",
     "env-schema": "^0.1.0",
-    "fastify": "^2.5.0",
+    "fastify": "^2.6.0",
     "fastify-autoload": "^0.8.0",
     "fastify-basic-auth": "^0.4.0",
     "fastify-cli": "^1.0.0",
     "fastify-elasticsearch": "^1.0.0",
     "fastify-plugin": "^1.6.0",
-    "fluent-schema": "^0.7.2",
+    "fluent-schema": "^0.7.3",
     "hyperid": "^2.0.2",
-    "make-promises-safe": "^5.0.0"
+    "pino-elasticsearch": "^4.1.0"
   },
   "devDependencies": {
     "standard": "^12.0.1",
-    "tap": "^14.2.2"
+    "tap": "^14.3.1"
   }
 }
