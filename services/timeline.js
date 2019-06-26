@@ -12,8 +12,7 @@ async function timelineService (fastify, opts) {
       // https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html
       querystring: S.object()
         .prop('from', S.integer().minimum(0).maximum(10000))
-        .additionalProperties(false)
-        .valueOf(),
+        .additionalProperties(false),
       response: {
         200: S.array()
           .items(S.object()
@@ -22,7 +21,7 @@ async function timelineService (fastify, opts) {
             .prop('time', S.string())
             .prop('user', S.string())
             .prop('topics', S.array().items(S.string()))
-          ).valueOf()
+          )
       }
     }
   })

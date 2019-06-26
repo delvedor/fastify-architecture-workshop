@@ -9,7 +9,7 @@ async function statusService (fastify, opts) {
     handler: onStatus,
     schema: {
       response: {
-        200: S.object().prop('status', S.string()).valueOf()
+        200: S.object().prop('status', S.string())
       }
     }
   })

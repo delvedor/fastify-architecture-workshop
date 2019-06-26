@@ -16,7 +16,6 @@ async function getService (fastify, opts) {
           .prop('time', S.string())
           .prop('user', S.string())
           .prop('topics', S.array().items(S.string()))
-          .valueOf()
       }
     }
   })

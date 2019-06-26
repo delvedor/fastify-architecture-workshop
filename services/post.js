@@ -17,12 +17,11 @@ async function postService (fastify, opts) {
           .minLength(1)
           .maxLength(280)
           .required()
-        ).valueOf(),
+        ),
       response: {
         200: S.object()
           .prop('id', S.string())
           .prop('time', S.string())
-          .valueOf()
       }
     }
   })
