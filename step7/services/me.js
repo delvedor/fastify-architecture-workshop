@@ -2,11 +2,11 @@
 
 const S = require('fluent-schema')
 
-async function statusService (fastify, opts) {
+async function meService (fastify, opts) {
   fastify.route({
     method: 'GET',
     path: '/me',
-    handler: onStatus,
+    handler: onMe,
     onRequest: fastify.basicAuth,
     schema: {
       response: {
@@ -17,9 +17,9 @@ async function statusService (fastify, opts) {
     }
   })
 
-  async function onStatus (req, reply) {
+  async function onMe (req, reply) {
     return req.user
   }
 }
 
-module.exports = statusService
+module.exports = meService
