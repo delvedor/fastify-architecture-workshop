@@ -14,7 +14,7 @@ async function basicAuthPlugin (fastify, opts) {
 
   async function validate (username, password, req, reply) {
     if (users[username] !== password) {
-      return new Error('Invalid username or password')
+      throw new Error('Invalid username or password')
     }
 
     req.user = {
