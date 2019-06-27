@@ -258,8 +258,13 @@ npm install
 
 # Exercise*:*
 
-Generate the project and create  
-a simple status service that exposes a status route.
+Generate the project and run it!
+
+---
+
+# Exercise*:*
+
+Create a simple status service that exposes a status route.
 ```
 GET /status => { status: 'ok' }
 ```
@@ -276,24 +281,38 @@ GET /status => { status: 'ok' }
 />
 
 <Code
+  title="Testing"
   lang="js"
-  focus="3:5"
+  focus="1:23"
   code={require("!!raw-loader!./code/test.js").default}
-  subtitle="Required the dependencies"
 />
 
 <Code
   lang="js"
-  focus="7"
+  focus="3"
+  code={require("!!raw-loader!./code/test.js").default}
+  subtitle="Require the test framework"
+/>
+
+<Code
+  lang="js"
+  focus="5:7"
+  code={require("!!raw-loader!./code/test.js").default}
+  subtitle="Require the helper to build the application"
+/>
+
+<Code
+  lang="js"
+  focus="9"
   code={require("!!raw-loader!./code/test.js").default}
   subtitle="Create a new test block"
 />
 
 <Code
   lang="js"
-  focus="8:9"
+  focus="10"
   code={require("!!raw-loader!./code/test.js").default}
-  subtitle="Instance the framework and register the application"
+  subtitle="Create the application"
 />
 
 <Code
@@ -305,16 +324,9 @@ GET /status => { status: 'ok' }
 
 <Code
   lang="js"
-  focus="16:20"
+  focus="16:17"
   code={require("!!raw-loader!./code/test.js").default}
   subtitle="Check the response!"
-/>
-
-<Code
-  lang="js"
-  focus="22"
-  code={require("!!raw-loader!./code/test.js").default}
-  subtitle="Shutdown the application"
 />
 
 </CodeSurferLayout>
@@ -324,6 +336,92 @@ GET /status => { status: 'ok' }
 # Exercise*:*
 
 Test your application.
+
+---
+
+# Authentication
+
+Protecting your application is important.
+<img
+  src="images/basic-auth-over-plain-http.jpg"
+  style={{
+    width: '50%',
+    height: 'auto'
+  }}
+/>
+
+---
+
+# Exercise*:*
+
+Create an authentication plugin that uses [fastify-basic-auth](https://github.com/fastify/fastify-basic-auth).
+
+Create also two fake users to test your application.
+```js
+const users = {
+  arya: 'stark', // Basic YXJ5YTpzdGFyaw==
+  jon: 'snow' // Basic am9uOnNub3c=
+}
+```
+
+---
+
+<CodeSurferLayout>
+
+<Code
+  lang="js"
+  focus="1:29"
+  code={require("!!raw-loader!./code/basic-auth.js").default}
+/>
+
+<Code
+  lang="js"
+  focus="3:4"
+  code={require("!!raw-loader!./code/basic-auth.js").default}
+  subtitle="Require the dependencies"
+/>
+
+<Code
+  lang="js"
+  focus="6:9"
+  code={require("!!raw-loader!./code/basic-auth.js").default}
+  subtitle="Our 'database'"
+/>
+
+<Code
+  lang="js"
+  focus="12:13"
+  code={require("!!raw-loader!./code/basic-auth.js").default}
+  subtitle="Register the basicAuth plugin and decorate the request with a user object"
+/>
+
+<Code
+  lang="js"
+  focus="15:18"
+  code={require("!!raw-loader!./code/basic-auth.js").default}
+  subtitle="Validate the username and password"
+/>
+
+<Code
+  lang="js"
+  focus="20:26"
+  code={require("!!raw-loader!./code/basic-auth.js").default}
+  subtitle="If the user exist, let's add its topics"
+/>
+
+</CodeSurferLayout>
+
+___
+
+# Exercise*:*
+
+Test your plugin.
+
+---
+
+# Exercise*:*
+
+Create a new `/me` route that returns `req.user`. Add a test.
 
 ---
 
@@ -445,92 +543,6 @@ GET /timeline => [{
 # Exercise*:*
 
 Test your application.
-
----
-
-# Authentication
-
-Protecting your application is important.
-<img
-  src="images/basic-auth-over-plain-http.jpg"
-  style={{
-    width: '50%',
-    height: 'auto'
-  }}
-/>
-
----
-
-# Exercise*:*
-
-Create an authentication plugin that uses [fastify-basic-auth](https://github.com/fastify/fastify-basic-auth).
-
-Create also two fake users to test your application.
-```js
-const users = {
-  arya: 'stark', // Basic YXJ5YTpzdGFyaw==
-  jon: 'snow' // Basic am9uOnNub3c=
-}
-```
-
----
-
-<CodeSurferLayout>
-
-<Code
-  lang="js"
-  focus="1:29"
-  code={require("!!raw-loader!./code/basic-auth.js").default}
-/>
-
-<Code
-  lang="js"
-  focus="3:4"
-  code={require("!!raw-loader!./code/basic-auth.js").default}
-  subtitle="Require the dependencies"
-/>
-
-<Code
-  lang="js"
-  focus="6:9"
-  code={require("!!raw-loader!./code/basic-auth.js").default}
-  subtitle="Our 'database'"
-/>
-
-<Code
-  lang="js"
-  focus="12:13"
-  code={require("!!raw-loader!./code/basic-auth.js").default}
-  subtitle="Register the basicAuth plugin and decorate the request with a user object"
-/>
-
-<Code
-  lang="js"
-  focus="15:18"
-  code={require("!!raw-loader!./code/basic-auth.js").default}
-  subtitle="Validate the username and password"
-/>
-
-<Code
-  lang="js"
-  focus="20:26"
-  code={require("!!raw-loader!./code/basic-auth.js").default}
-  subtitle="If the user exist, let's add its topics"
-/>
-
-</CodeSurferLayout>
-
-___
-
-# Exercise*:*
-
-Test your plugin.
-
----
-
-# Exercise*:*
-
-Add the authentication to your routes.
 
 ---
 
