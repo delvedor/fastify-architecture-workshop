@@ -21,6 +21,12 @@ Technical Director - NearForm
 
 ---
 
+# Setup
+
+https://bit.ly/2KGS2vo
+
+---
+
 <Image src="images/fastify-background.png">
 
 <Center>
@@ -51,6 +57,44 @@ fastify.get('/', async (req, reply) => {
 })
 
 fastify.listen(3000, console.log)
+```
+
+</CodeSurferLayout>
+
+---
+
+# Validation
+
+---
+
+<CodeSurferLayout>
+
+```js title="JSON Schema"
+const schema = {
+  body: {
+    type: 'object',
+    properties: {
+      user: { type: 'string' },
+      age: { type: 'integer' }
+    },
+    required: ['user', 'age']
+  }
+}
+
+fastify.post('/', { schema },  async (req, reply) => {
+  return { hello: 'world' }
+})
+```
+
+```js title="Fluent Schema"
+const S = requrie('fluent-schema')
+const schema = S.object()
+  .prop('user', S.string()).required()
+  .prop('age', S.integer()).required()
+
+fastify.post('/', { schema },  async (req, reply) => {
+  return { hello: 'world' }
+})
 ```
 
 </CodeSurferLayout>
@@ -377,6 +421,24 @@ module.exports = async function (fastify, opts) {
 
 ---
 
+<CodeSurferLayout>
+
+```js title="Index a new document in Elasticsearch"
+await fastify.elastic.index({
+  index: 'westeros',
+  id: 'stark-house'
+  body: {
+    house: 'Stark',
+    motto: 'Winter is coming',
+    region: 'north'
+  }  
+})
+```
+
+</CodeSurferLayout>
+
+---
+
 # Exercise*:*
 
 Create an endpoint to index a new tweet,  
@@ -399,6 +461,21 @@ You can use [Hyperid](http://npmjs.com/package/hyperid) for generating the IDs.
 # Exercise*:*
 
 Test your application.
+
+---
+
+<CodeSurferLayout>
+
+```js title="Get a document by id in Elasticsearch"
+const { body } = await fastify.elastic.get({
+  index: 'westeros',
+  id: 'stark-house'
+})
+
+console.log(body._source)
+```
+
+</CodeSurferLayout>
 
 ---
 
@@ -425,6 +502,23 @@ Test your application.
 
 ---
 
+<CodeSurferLayout>
+
+```js title="Search documents ordered by time in Elasticsearch"
+const { body } = await fastify.elastic.search({
+  index: 'westeros',
+  query: { match_all: {} },
+  sort: { time: { order: 'desc' } }
+})
+
+const docs = body.hits.hits.map(h => h._source)
+console.log(docs)
+```
+
+</CodeSurferLayout>
+
+---
+
 # Exercise*:*
 
 Create an endpoint to get a tweet timeline, ordered by time.  
@@ -439,6 +533,40 @@ GET /timeline => [{
                     topics: String[]
                  }]
 ```
+
+---
+
+<CodeSurferLayout>
+
+<Code
+  title="Boost the results with a given topic."
+  lang="js"
+  focus="1:35"
+  code={require("!!raw-loader!./code/query.js").default}
+/>
+
+<Code
+  subtitle="Create a term filter for every topic."
+  lang="js"
+  focus="1:8"
+  code={require("!!raw-loader!./code/query.js").default}
+/>
+
+<Code
+  subtitle="Create a function score query and search all documents"
+  lang="js"
+  focus="11:15"
+  code={require("!!raw-loader!./code/query.js").default}
+/>
+
+<Code
+  subtitle="Boost the results based on the functions"
+  lang="js"
+  focus="16:28"
+  code={require("!!raw-loader!./code/query.js").default}
+/>
+
+</CodeSurferLayout>
 
 ---
 
