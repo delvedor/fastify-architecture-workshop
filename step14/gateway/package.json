@@ -1,0 +1,17 @@
+{
+  "name": "gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tomas Della Vedova",
+  "license": "ISC",
+  "dependencies": {
+    "elastic-apm-node": "^2.11.6",
+    "fastify": "^2.6.0",
+    "fastify-http-proxy": "^2.2.0"
+  }
+}
