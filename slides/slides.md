@@ -724,7 +724,7 @@ npm i elastic-apm-node
 ```json
 {
   "dev": "fastify start -l info -P app.js",
-  "apm": "NODE_OPTIONS=\"-r elastic-apm-node/start\" fastify start -l info -P app.js"
+  "apm": "NODE_OPTIONS=\"-r elastic-apm-node/start\" fastify start -l info app.js"
 }
 ```
 
@@ -732,7 +732,7 @@ npm i elastic-apm-node
 
 ---
 
-# Exercise*:*
+# Exercise *12*
 
 Open Kibana and run your application with APM.
 
@@ -752,7 +752,7 @@ Let's begin*!*
 
 ---
 
-# Exercise*:*
+# Exercise *13*
 <ul>
   <Appear>
     <li><em>Duplicate</em> the project three times</li>
@@ -787,7 +787,7 @@ which address to call based on the service they need to use.
 
 ---
 
-# Exercise*:*
+# Exercise *14*
 
 How can we fix this?
 
