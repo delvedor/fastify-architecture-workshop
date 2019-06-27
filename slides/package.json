@@ -1,0 +1,20 @@
+{
+  "name": "slides",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "mdx-deck slides.md",
+    "pdf": "mdx-deck-export pdf slides.md"
+  },
+  "keywords": [],
+  "author": "Tomas Della Vedova",
+  "license": "ISC",
+  "dependencies": {
+    "@mdx-deck/export": "^2.4.0",
+    "code-surfer": "^2.0.0-alpha.6",
+    "mdx-deck": "^2.4.0",
+    "raw-loader": "^3.0.0",
+    "styled-components": "^4.3.2"
+  }
+}
