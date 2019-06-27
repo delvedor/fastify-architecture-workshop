@@ -265,6 +265,16 @@ fastify.register(require('./api/v2'), {
 <Big>
 <Center>
 
+fastify.io/ecosystem
+
+</Center>
+</Big>
+
+---
+
+<Big>
+<Center>
+
 # Let's start*!*
 
 </Center>
@@ -277,7 +287,7 @@ Being *consistent* across microservices is a difficult task,
 to *help you* Fastify provides a powerful CLI.
 
 ```bash
-npx fastify generate workshop
+npx fastify-cli generate workshop
 cd workshop
 npm install
 ```
@@ -300,13 +310,13 @@ npm install
 
 ---
 
-# Exercise*:*
+# Exercise *0*
 
 Generate the project and run it!
 
 ---
 
-# Exercise*:*
+# Exercise *1*
 
 Create a simple status service that exposes a status route.
 ```
@@ -377,7 +387,7 @@ GET /status => { status: 'ok' }
 
 ---
 
-# Exercise*:*
+# Exercise *2*
 
 Test your application.
 
@@ -396,7 +406,7 @@ Protecting your application is important.
 
 ---
 
-# Exercise*:*
+# Exercise *3*
 
 Create an authentication plugin that uses [fastify-basic-auth](https://github.com/fastify/fastify-basic-auth).
 
@@ -457,7 +467,7 @@ const users = {
 
 ___
 
-# Exercise*:*
+# Exercise *4*
 
 Test your plugin.
 
@@ -486,7 +496,7 @@ fastify.route({
 
 ---
 
-# Exercise*:*
+# Exercise *5*
 
 Create a new `/me` route that returns `req.user`. Add a test.
 
@@ -558,7 +568,7 @@ await fastify.elastic.index({
 
 ---
 
-# Exercise*:*
+# Exercise *6*
 
 Create an endpoint to index a new tweet,  
 the endpoint should return the tweet id.  
@@ -577,7 +587,7 @@ You can use [Hyperid](http://npmjs.com/package/hyperid) for generating the IDs.
 
 ---
 
-# Exercise*:*
+# Exercise *7*
 
 Test your application.
 
@@ -598,7 +608,7 @@ console.log(body._source)
 
 ---
 
-# Exercise*:*
+# Exercise *8*
 
 Create an endpoint to get a tweet by id.  
 **Bonus:** Add route validation.
@@ -615,7 +625,7 @@ GET /tweet/:id => {
 
 ---
 
-# Exercise*:*
+# Exercise *9*
 
 Test your application.
 
@@ -638,7 +648,7 @@ console.log(docs)
 
 ---
 
-# Exercise*:*
+# Exercise *10*
 
 Create an endpoint to get a tweet timeline, ordered by time.  
 **Bonus:** Boost the results with a given topic.
@@ -689,15 +699,9 @@ GET /timeline => [{
 
 ---
 
-# Exercise*:*
+# Exercise *11*
 
 Test your application.
-
----
-
-# Exercise*:*
-
-Update your test.
 
 ---
 
