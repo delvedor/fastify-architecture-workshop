@@ -419,6 +419,29 @@ Test your plugin.
 
 ---
 
+<CodeSurferLayout>
+
+```js
+fastify.route({
+  method: 'GET',
+  path: '/post/:id',
+  handler: onGetPost
+})
+```
+
+```js
+fastify.route({
+  method: 'GET',
+  path: '/post/:id',
+  onRequest: fastify.basicAuth,
+  handler: onGetPost
+})
+```
+
+</CodeSurferLayout>
+
+---
+
 # Exercise*:*
 
 Create a new `/me` route that returns `req.user`. Add a test.
@@ -543,29 +566,6 @@ GET /timeline => [{
 # Exercise*:*
 
 Test your application.
-
----
-
-<CodeSurferLayout>
-
-```js
-fastify.route({
-  method: 'GET',
-  path: '/post/:id',
-  handler: onGetPost
-})
-```
-
-```js
-fastify.route({
-  method: 'GET',
-  path: '/post/:id',
-  onRequest: fastify.basicAuth,
-  handler: onGetPost
-})
-```
-
-</CodeSurferLayout>
 
 ---
 
