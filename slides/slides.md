@@ -373,10 +373,8 @@ Test your application.
 
 # Let's add our *database*
 
-```bash
-npm i fastify-elasticsearch
-npm i @delvedor/fastify-workshop-dataset
-```
+- npm.im/fastify-elasticsearch
+- npm.im/@delvedor/fastify-workshop-dataset
 
 ---
 
@@ -721,6 +719,10 @@ npm i elastic-apm-node
 # Exercise*:*
 
 Open Kibana and run your application with APM.
+
+```
+http://localhost:5601
+```
 
 ---
 
