@@ -5,7 +5,7 @@ const S = require('fluent-schema')
 async function timelineService (fastify, opts) {
   fastify.route({
     method: 'GET',
-    path: '/timeline',
+    path: '/',
     onRequest: fastify.basicAuth,
     handler: onGetTimeline,
     schema: {

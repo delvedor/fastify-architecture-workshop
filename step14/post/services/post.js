@@ -8,7 +8,7 @@ async function postService (fastify, opts) {
 
   fastify.route({
     method: 'POST',
-    path: '/post',
+    path: '/',
     onRequest: fastify.basicAuth,
     handler: onPost,
     schema: {

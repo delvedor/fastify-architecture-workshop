@@ -5,7 +5,7 @@ const S = require('fluent-schema')
 async function getService (fastify, opts) {
   fastify.route({
     method: 'GET',
-    path: '/post/:id',
+    path: '/:id',
     onRequest: fastify.basicAuth,
     handler: onGetPost,
     schema: {
