@@ -1,0 +1,34 @@
+{
+  "name": "monolith",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tap test/**/*.test.js",
+    "start": "fastify start -l info app.js",
+    "dev": "fastify start -l info -P app.js",
+    "apm": "NODE_OPTIONS=\"-r elastic-apm-node/start\" fastify start -l info app.js"
+  },
+  "keywords": [],
+  "author": "Matteo Collina <hello@matteocollina.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@delvedor/fastify-workshop-dataset": "^1.0.1",
+    "elastic-apm-node": "^2.11.6",
+    "env-schema": "^0.1.0",
+    "fastify": "^2.0.0",
+    "fastify-autoload": "^0.6.0",
+    "fastify-basic-auth": "^0.4.0",
+    "fastify-cli": "^1.0.0",
+    "fastify-elasticsearch": "^1.0.0",
+    "fastify-plugin": "^1.5.0",
+    "fluent-schema": "^0.7.3",
+    "hyperid": "^2.0.2"
+  },
+  "devDependencies": {
+    "tap": "^12.5.3"
+  }
+}

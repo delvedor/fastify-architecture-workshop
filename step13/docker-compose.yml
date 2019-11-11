@@ -1,0 +1,38 @@
+version: '3.2'
+
+services:
+  post:
+    build: ./post
+    image: post-ms
+    command: ["npm", "run", "apm"]
+    ports:
+      - "3030:3030"
+    environment:
+      - FASTIFY_PORT=3030
+    volumes:
+      - ./post/:/usr/src/app
+      - /usr/src/app/node_modules
+
+  me:
+    build: ./me
+    image: me-ms
+    command: ["npm", "run", "apm"]
+    ports:
+      - "3031:3031"
+    environment:
+      - FASTIFY_PORT=3031
+    volumes:
+      - ./post/:/usr/src/app
+      - /usr/src/app/node_modules
+
+  timeline:
+    build: ./timeline
+    image: timeline-ms
+    command: ["npm", "run", "apm"]
+    ports:
+      - "3032:3032"
+    environment:
+      - FASTIFY_PORT=3032
+    volumes:
+      - ./post/:/usr/src/app
+      - /usr/src/app/node_modules
