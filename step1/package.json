@@ -15,13 +15,13 @@
   "author": "Matteo Collina <hello@matteocollina.com>",
   "license": "MIT",
   "dependencies": {
-    "fastify": "^2.0.0",
-    "fastify-autoload": "^0.6.0",
-    "fastify-cli": "^1.0.0",
-    "fastify-plugin": "^1.5.0",
-    "fluent-schema": "^0.7.3"
+    "fastify": "^2.10.0",
+    "fastify-autoload": "^1.0.0",
+    "fastify-cli": "^1.3.0",
+    "fastify-plugin": "^1.6.0",
+    "fluent-schema": "^0.7.5"
   },
   "devDependencies": {
-    "tap": "^12.5.3"
+    "tap": "^14.9.2"
   }
 }

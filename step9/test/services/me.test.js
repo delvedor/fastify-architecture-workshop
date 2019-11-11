@@ -15,11 +15,11 @@ test('200 response', async t => {
 
   t.strictEqual(response.statusCode, 200)
   t.deepEqual(JSON.parse(response.payload), {
-    name: "arya",
+    name: 'arya',
     topics: [
-      "sword",
-      "death",
-      "weapon"
+      'sword',
+      'death',
+      'weapon'
     ]
   })
 })
