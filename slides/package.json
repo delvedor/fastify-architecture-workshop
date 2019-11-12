@@ -12,9 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "@mdx-deck/export": "^2.5.1",
-    "code-surfer": "^3.0.0-beta.1",
-    "mdx-deck": "^3.0.13",
+    "code-surfer": "^2.0.0-alpha.6",
+    "mdx-deck": "^2.4.0",
     "raw-loader": "^3.1.0",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "theme-ui": "^0.2.46"
   }
 }
